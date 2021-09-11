@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GMS Fixture Download Export Cleaner</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="player.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="papaparse.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+		<script src="player.js"></script>
+	</head>
+	<body>
+		
+
+		<div class="grid-container">
+
+            <div class="grid 100"><h1>EH GMS Fixture Export Cleaner</h1></div>
+            
+			
+			<div class="grid 100">
+				<div style="text-align: left;">
+			<p>The new GMS from England Hockey allows you to download a CSV file of fixtures for a club, but the format isn't 100% ideal for importing into a club management system (like Teamo). This tool lets you open an exported file and will clean up the fields for you.</p>
+		</div>
+
+
+
+				<h2>1. Choose File</h2>
+
+				<input type="file" id="files" accept=".csv" style="height: 40px; font-size:1.2em">
+
+
+			    
+			    
+				<h2>2. Enter Club Name</h2>
+				Enter your clubname as it appears in the GMS data in your Teams. e.g. for "Mytown Women 3" enter "Mytown". This is used for two purposes:<br>
+				1. To detect whether the fixture is home or away. 2. To pick out if any teams are just "Mytown" and append Women 1 / Men 1 on the end.<br><br>
+                <input id="bareName" placeholder="Enter Club Name" style="width:500px;" value="">
+
+
+				<br><br>
+
+				<button id="submit-parse">Fix it Please</button>
+
+
+                <br><br>
+
+
+                <div style="text-align:left">
+			<h2>What it does</h2>
+
+				Updated file will have:
+                <ul>
+                    <li>Competition/Event Separated into two columns</li>
+                    <li>Home Team and Venue Split into two columns</li>
+                    <li>New Column "My Team" added</li>
+					<li>New Column "Opposition" added</li>
+                    <li>New Column "Home/Away" added</li>
+					<li>Top teams will be made unique e.g. "Clubname" -> "Clubname Men 1"</li>
+					<li>Any extra columns removed</li>
+                </ul>
+            </div>
+
+
+			
+			<div style="text-align:left">
+				<h2>Getting a File from the GMS</h2>
+	
+					Updated file will have:
+					<ol>
+						<li>Login as a club admin</li>
+						<li>Go to fixtures</li>
+						<li>Choose your date range</li>
+						<li>You'll probably want to choose "All Associations"</li>
+						<li>Click Search</li>
+						<li>You should see all the fixtures you asked for</li>
+						<li>Click the Export button at the top <br><img src="export.png"/></li>
+						<li>Your export will download</li>
+						<li>You can upload it using Choose File on this page</li>
+	
+					</ol>
+				</div>
+	
+
+			
+            
+
+
+			<div class="grid-100 text-center"></div>
+			<h2>Free Tool, No Warranties!</h2>
+
+			<p>This tool is free, was quickly written to make importing fixtures easier. There are no warranties on accuracy, so check the output file you get!</p>
+			<p>If you do find it useful, and your club isn't already signed up to easyfundraising, sign up using the link below, and we'll get some bonus donations (at no detriment to your fundraising).</p>
+
+
+
+			<h2><a href="https://www.easyfundraising.org.uk/register-your-good-cause/?invite=NNNVM0&referral-campaign=c2c"><img src="efr.png" style="max-width: 40%" /></a><br><a href="https://www.easyfundraising.org.uk/register-your-good-cause/?invite=NNNVM0&referral-campaign=c2c">Get easyfundraising for your club here</a></h2>
+<br><br>
+			Built for <a href="http://www.trojanshockey.co.uk">Trojans HC</a>, based on <a href="https://www.papaparse.com/">papaparse</a> and <a href="https://sheetjs.com/">SheetJS</a>. Not endorsed by or associated with England Hockey.
+
+		</div>
+
+
+		</div>
+	</div>
+	</body>
+</html>
