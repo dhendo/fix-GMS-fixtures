@@ -179,12 +179,21 @@ function completeFn(results) {
             item["Opposition"] = item["Home team"];
         }
 
-        if (bareName && (item["My Team"]).toLowerCase() == bareName) {
-            if (item["Competition"].includes("Women")) {
+        let myTeam = item["My Team"].toLowerCase() || '';
+
+        if (bareName && (myTeam === bareName)) {
+            if (item["Competition"].includes("Women") || item["Competition"].includes("Ladies")) {
                 item["My Team"] = item["My Team"] + " Women 1";
             } else {
                 item["My Team"] = item["My Team"] + " Men 1";
             }
+        }else if(myTeam.indexOf("mens") == -1 && myTeam.indexOf("ladies") == -1 && myTeam.indexOf("womens") == -1 ){
+            if (item["Competition"].includes("Women") || item["Competition"].includes("Ladies")) {
+                item["My Team"] = item["My Team"] + " (Women)";
+            } else {
+                item["My Team"] = item["My Team"] + " (Men)";
+            }
+
         }
 
 
