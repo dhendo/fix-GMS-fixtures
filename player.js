@@ -4,7 +4,7 @@ var parser;
 var pauseChecked = false;
 var printStepChecked = false;
 var bareName = "";
-
+var appendGender = false;
 
 $(function () {
     $('#submit-parse').click(function () {
@@ -13,6 +13,9 @@ $(function () {
         if (!bareName) {
             return alert("You must supply a club name");
         }
+
+        // If checked, then append gender to all teams, not just top
+        appendGender = $('#appendgender').is(":checked");
 
         stepped = 0;
         chunks = 0;
@@ -181,7 +184,7 @@ function completeFn(results) {
 
         let myTeam = item["My Team"].toLowerCase() || '';
 
-        if (bareName && (myTeam === bareName)) {
+        if (bareName && (myTeam === bareName) && !appendGender) {
             if (item["Competition"].includes("Women") || item["Competition"].includes("Ladies")) {
                 item["My Team"] = item["My Team"] + " Women 1";
             } else {
