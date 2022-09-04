@@ -186,6 +186,9 @@ function completeFn(results) {
                 item["My Team"] = item["My Team"] + " Men 1";
             }
         }
+        
+        item["Time"] = (item["Time"] || "").trim();
+        
 
 
 
