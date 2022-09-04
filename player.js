@@ -4,7 +4,7 @@ var parser;
 var pauseChecked = false;
 var printStepChecked = false;
 var bareName = "";
-
+var appendGender = false;
 
 $(function () {
     $('#submit-parse').click(function () {
@@ -13,6 +13,9 @@ $(function () {
         if (!bareName) {
             return alert("You must supply a club name");
         }
+
+        // If checked, then append gender to all teams, not just top
+        appendGender = $('#appendgender').is(":checked");
 
         stepped = 0;
         chunks = 0;
@@ -179,12 +182,21 @@ function completeFn(results) {
             item["Opposition"] = item["Home team"];
         }
 
-        if (bareName && (item["My Team"]).toLowerCase() == bareName) {
-            if (item["Competition"].includes("Women")) {
+        let myTeam = item["My Team"].toLowerCase() || '';
+
+        if (bareName && (myTeam === bareName) && !appendGender) {
+            if (item["Competition"].includes("Women") || item["Competition"].includes("Ladies")) {
                 item["My Team"] = item["My Team"] + " Women 1";
             } else {
                 item["My Team"] = item["My Team"] + " Men 1";
             }
+        }else if(myTeam.indexOf("mens") == -1 && myTeam.indexOf("ladies") == -1 && myTeam.indexOf("womens") == -1 ){
+            if (item["Competition"].includes("Women") || item["Competition"].includes("Ladies")) {
+                item["My Team"] = item["My Team"] + " (Women)";
+            } else {
+                item["My Team"] = item["My Team"] + " (Men)";
+            }
+
         }
         
         item["Time"] = (item["Time"] || "").trim();
